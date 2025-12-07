@@ -8,6 +8,22 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row  # 辞書形式で取得
     return conn
 
+def init_db():
+    conn = get_db_connection()
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS 商品 (
+            商品ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            品目名 TEXT NOT NULL,
+            在庫数 INTEGER NOT NULL,
+            最低在庫数 INTEGER NOT NULL
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+init_db()
+
+
 # 商品一覧
 @app.route('/')
 def index():
