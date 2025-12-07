@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>商品一覧</title>
+</head>
+<body>
+    <h1>商品一覧</h1>
+    <table border="1">
+        <tr>
+            <th>商品ID</th>
+            <th>品目名</th>
+            <th>在庫数</th>
+            <th>最低在庫数</th>
+            <th>操作</th> <!-- ★ここを追加 -->
+        </tr>
+        {% for row in products %}
+        <tr>
+            <td>{{ row['商品ID'] }}</td>
+            <td>{{ row['品目名'] }}</td>
+            <td>{{ row['在庫数'] }}</td>
+            <td>{{ row['最低在庫数'] }}</td>
+            <td>
+    <a href="{{ url_for('entry', product_id=row['商品ID']) }}">入庫</a>
+    |
+    <a href="{{ url_for('exit', product_id=row['商品ID']) }}">出庫</a>
+</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+

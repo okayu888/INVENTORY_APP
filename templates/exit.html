@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>出庫処理</title>
+</head>
+<body>
+    <h1>出庫処理</h1>
+    <p>商品ID：{{ product['商品ID'] }}</p>
+    <p>品目名：{{ product['品目名'] }}</p>
+    <p>現在の在庫数：{{ product['在庫数'] }}</p>
+
+    <form action="{{ url_for('exit_post', product_id=product['商品ID']) }}" method="POST">
+        <label>出庫数：</label>
+        <input type="number" name="quantity" min="1" required>
+        <button type="submit">出庫する</button>
+    </form>
+
+    <p><a href="{{ url_for('index') }}">← 商品一覧に戻る</a></p>
+</body>
+</html>
+
